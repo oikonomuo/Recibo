@@ -1,0 +1,249 @@
+/* ═══════════════════════════════════════════════════
+   FACTURA DIGITAL PRO — styles.css
+═══════════════════════════════════════════════════ */
+
+:root {
+  --navy:   #1a2744;
+  --navy2:  #2c3e6e;
+  --soft:   #eaeff8;
+  --g50:    #fafafa;
+  --g100:   #f4f4f5;
+  --g200:   #e4e4e7;
+  --g400:   #a1a1aa;
+  --g600:   #52525b;
+  --g800:   #27272a;
+  --red:    #dc2626;
+  --red-bg: #fef2f2;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(140deg, #dde4f0 0%, #f3f4f6 50%, #e0e7f5 100%);
+  min-height: 100vh;
+  color: var(--g800);
+}
+
+/* ──────── NAVBAR ──────── */
+.top-nav {
+  background: var(--navy);
+  padding: .9rem 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  box-shadow: 0 3px 28px rgba(26,39,68,.5);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.nav-icon { color: #94a3d4; font-size: 1.4rem; }
+.brand { color: #fff; font-size: 1.1rem; font-weight: 700; }
+.brand em { color: #94a3d4; font-style: normal; font-weight: 300; }
+.badge-v {
+  background: rgba(255,255,255,.12); color: #94a3d4;
+  font-size: .62rem; font-weight: 700;
+  padding: .2rem .55rem; border-radius: 20px; letter-spacing: .05em;
+}
+
+/* ──────── CARD ──────── */
+.f-card {
+  background: #fff; border-radius: 22px;
+  box-shadow: 0 12px 60px rgba(26,39,68,.10), 0 2px 8px rgba(26,39,68,.06);
+}
+
+/* ──────── SECTION HEADERS ──────── */
+.sec {
+  background: var(--soft); border-left: 4px solid var(--navy);
+  padding: .5rem 1rem; font-size: .69rem; font-weight: 800;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--navy);
+  margin-bottom: 1.3rem; border-radius: 0 8px 8px 0;
+  display: flex; align-items: center; gap: .45rem;
+}
+
+/* ──────── INPUTS ──────── */
+.form-label { font-size: .76rem; font-weight: 600; color: var(--g600); margin-bottom: .28rem; display: block; }
+.req { color: var(--red); }
+.form-control, .form-select {
+  border: 1.5px solid var(--g200); border-radius: 10px;
+  font-size: .875rem; padding: .55rem .85rem;
+  color: var(--g800); min-height: 45px; width: 100%;
+  font-family: 'Inter', sans-serif; background: #fff;
+  transition: border-color .2s, box-shadow .2s;
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--navy); box-shadow: 0 0 0 3px rgba(26,39,68,.12); outline: none;
+}
+.form-control::placeholder { color: var(--g400); }
+textarea.form-control { min-height: 90px; resize: vertical; }
+
+.input-group { display: flex; }
+.input-group .form-control { border-radius: 10px 0 0 10px; }
+.ig-addon {
+  padding: 0 1rem; background: var(--g50);
+  border: 1.5px solid var(--g200); border-left: 0;
+  border-radius: 0 10px 10px 0; color: var(--g600);
+  font-size: .85rem; display: flex; align-items: center;
+}
+
+/* ──────── LOGO ──────── */
+.logo-zone {
+  border: 2px dashed var(--g200); border-radius: 14px; min-height: 140px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: border-color .25s, background .25s;
+  background: var(--g50); position: relative; overflow: hidden;
+}
+.logo-zone:hover { border-color: var(--navy); background: var(--soft); }
+.logo-zone img { max-height: 115px; max-width: 100%; object-fit: contain; }
+.logo-ph {
+  display: flex; flex-direction: column; align-items: center; gap: .4rem;
+  color: var(--g400); font-size: .79rem; pointer-events: none; text-align: center;
+}
+.logo-ph i { font-size: 2.1rem; }
+#logoInput { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+
+/* ──────── INVOICE # ──────── */
+.inv-num {
+  background: var(--navy); border-radius: 13px;
+  padding: .68rem 1rem; display: flex; align-items: center; gap: .65rem;
+}
+.inv-icon { color: #94a3d4; font-size: 1.2rem; flex-shrink: 0; }
+.inv-num label {
+  color: #94a3d4; font-size: .67rem; font-weight: 800;
+  letter-spacing: .13em; text-transform: uppercase; display: block; margin: 0 0 2px;
+}
+.inv-num input {
+  background: transparent; border: none;
+  border-bottom: 1.5px solid rgba(255,255,255,.25);
+  color: #fff; font-size: 1.28rem; font-weight: 800;
+  width: 100%; padding: 0; outline: none; font-family: 'Inter', sans-serif;
+}
+.inv-num input::placeholder { color: rgba(255,255,255,.28); }
+
+/* ──────── TABLE ──────── */
+.tbl-wrap { border-radius: 14px; overflow-x: auto; border: 1.5px solid var(--g200); }
+.inv-tbl { width: 100%; border-collapse: collapse; min-width: 640px; }
+.inv-tbl thead th {
+  background: var(--navy); color: #fff; font-size: .69rem;
+  font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+  padding: .8rem 1rem; text-align: left;
+}
+.inv-tbl thead th:last-child { text-align: center; }
+.inv-tbl tbody tr { border-bottom: 1px solid var(--g100); transition: background .15s; }
+.inv-tbl tbody tr:hover { background: var(--g50); }
+.inv-tbl tbody td { padding: .55rem .7rem; }
+.inv-tbl td input {
+  border: 1.5px solid var(--g200); border-radius: 8px;
+  padding: .4rem .6rem; font-size: .85rem; width: 100%;
+  min-height: 41px; color: var(--g800); transition: border-color .2s;
+  background: #fff; font-family: 'Inter', sans-serif;
+}
+.inv-tbl td input:focus {
+  border-color: var(--navy); outline: none; box-shadow: 0 0 0 2px rgba(26,39,68,.1);
+}
+.sub-c { font-weight: 700; color: var(--navy); font-size: .88rem; text-align: right; white-space: nowrap; padding-right: .9rem; }
+.act-c { text-align: center; }
+.btn-del {
+  background: var(--red-bg); border: none; color: var(--red);
+  border-radius: 8px; width: 35px; height: 35px;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background .2s, transform .15s; font-size: .88rem;
+}
+.btn-del:hover { background: #fecaca; transform: scale(1.12); }
+
+/* ──────── TOTALS ──────── */
+.tot-box {
+  background: var(--g50); border: 1.5px solid var(--g200);
+  border-radius: 14px; padding: 1.25rem 1.55rem;
+}
+.t-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: .42rem 0; font-size: .88rem; color: var(--g600);
+  border-bottom: 1px dashed var(--g200);
+}
+.t-row:last-child { border: none; }
+.t-row.grand { font-size: 1.22rem; font-weight: 800; color: var(--navy); padding-top: .8rem; }
+
+/* ──────── BUTTONS ──────── */
+.btn-add {
+  background: var(--soft); color: var(--navy); border: 1.5px dashed var(--navy2);
+  border-radius: 10px; font-weight: 700; font-size: .84rem; padding: .56rem 1.1rem;
+  cursor: pointer; font-family: 'Inter', sans-serif; transition: background .2s, transform .15s;
+}
+.btn-add:hover { background: #cdd8ee; transform: translateY(-1px); }
+
+.btn-pdf {
+  background: var(--navy); color: #fff; border: none; border-radius: 13px;
+  font-weight: 700; font-size: .95rem; padding: .8rem 2.3rem; letter-spacing: .03em;
+  box-shadow: 0 4px 24px rgba(26,39,68,.35); display: flex; align-items: center; gap: .55rem;
+  cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: background .2s, transform .15s, box-shadow .2s;
+}
+.btn-pdf:hover { background: var(--navy2); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(26,39,68,.4); }
+
+.btn-clr {
+  background: transparent; color: var(--g600); border: 1.5px solid var(--g200);
+  border-radius: 13px; font-size: .85rem; padding: .78rem 1.5rem; font-weight: 600;
+  cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s;
+}
+.btn-clr:hover { border-color: var(--red); color: var(--red); background: var(--red-bg); }
+
+.divider { border: none; border-top: 1px solid var(--g200); margin: 1.5rem 0; }
+
+/* ──────── SALDO DISPLAY ──────── */
+.saldo-display {
+  border: 1.5px solid #fcd34d;
+  border-radius: 10px;
+  background: #fffbeb;
+  min-height: 45px;
+  display: flex;
+  align-items: center;
+  padding: 0 .85rem;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #d97706;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ──────── TOAST ──────── */
+#toast {
+  position: fixed; bottom: 28px; right: 28px;
+  background: var(--navy); color: #fff;
+  padding: .75rem 1.4rem; border-radius: 12px;
+  font-size: .85rem; font-weight: 600;
+  box-shadow: 0 8px 30px rgba(26,39,68,.4);
+  transform: translateY(18px); opacity: 0;
+  transition: all .3s; z-index: 99999;
+  display: flex; align-items: center; gap: .5rem; pointer-events: none;
+}
+#toast.show { opacity: 1; transform: translateY(0); }
+
+/* ──────── RESPONSIVE ──────── */
+@media (max-width: 576px) {
+  .f-card { border-radius: 14px; }
+  .btn-pdf, .btn-clr { width: 100%; justify-content: center; }
+}
+
+/* ══════════════════════════════════════════════════════
+   PRINT STYLES — solo se activa al imprimir
+══════════════════════════════════════════════════════ */
+#print-area { display: none; }
+
+@media print {
+  /* Ocultar TODO excepto el recibo */
+  body > *     { display: none !important; }
+  #print-area  { display: block !important; }
+
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+}
