@@ -174,9 +174,14 @@ function buildReceiptHTML(d) {
             FACTURADO A
           </div>
           <div style="font-size:20px;font-weight:700;color:#1a2744;
-              font-family:Arial,sans-serif;margin-bottom:10px;line-height:1.2;">
+              font-family:Arial,sans-serif;margin-bottom:4px;line-height:1.2;">
             ${d.cliente}
           </div>
+          ${d.empresaCli && d.empresaCli !== '—' ? `
+          <div style="font-size:14px;font-weight:600;color:#3b5299;
+              font-family:Arial,sans-serif;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px;">
+            ${d.empresaCli}
+          </div>` : '<div style="margin-bottom:10px;"></div>'}
           <table style="border-collapse:collapse;">
             <tr>
               <td style="padding:4px 0;font-size:13px;color:#71717a;
@@ -381,6 +386,7 @@ function buildReceiptHTML(d) {
             <div style="font-size:14px;font-weight:700;color:#1a2744;
                 font-family:Arial,sans-serif;">
               ${d.cliente}
+              ${d.empresaCli && d.empresaCli !== '—' ? `<br/><span style="font-size:11px;font-weight:400;color:#71717a;">${d.empresaCli}</span>` : ''}
             </div>
             <div style="font-size:11.5px;color:#94a3d4;margin-top:3px;
                 font-family:Arial,sans-serif;letter-spacing:.04em;">

@@ -97,7 +97,7 @@ function clearAll() {
   if (!confirm('¿Limpiar todos los campos?')) return;
 
   /* Solo limpiar campos del cliente y opciones */
-  ['fCliente','fCI','fCliTel','fCiudad','fNotas','fDesc','fACuenta']
+  ['fCliente','fEmpresaCli','fCI','fCliTel','fCiudad','fNotas','fDesc','fACuenta']
     .forEach(id => { const e = $(id); if (e) e.value = ''; });
 
   $('fMes').value    = '';
@@ -172,6 +172,7 @@ function collectData() {
     mes      : val('fMes'),
     anio     : val('fAnio'),
     cliente  : val('fCliente') || '—',
+    empresaCli: val('fEmpresaCli') || '—',
     ci       : val('fCI')      || '—',
     cliTel   : val('fCliTel'),
     ciudad   : val('fCiudad'),
@@ -200,7 +201,7 @@ function collectData() {
 ══════════════════════════════════════════ */
 function generatePDF() {
   /* Validaciones */
-  if (!val('fEmpresa')) { alert('Por favor ingresa el nombre de la empresa.'); $('fEmpresa').focus(); return; }
+  if (!val('fEmpresa')) { alert('Por favor ingresa el nombre de tu empresa.'); $('fEmpresa').focus(); return; }
   if (!val('fCliente')) { alert('Por favor ingresa el nombre del cliente.');   $('fCliente').focus(); return; }
 
   /* 1. Recolectar todos los datos ahora mismo */
