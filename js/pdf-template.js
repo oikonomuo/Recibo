@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════
-   FACTURA DIGITAL PRO — pdf-template.js
-   Genera el HTML del documento de factura para impresión/PDF.
+   RECIBO DIGITAL PRO — pdf-template.js
+   Genera el HTML del documento de recibo para impresión/PDF.
    Usa solo estilos inline + background-color explícito.
 ═══════════════════════════════════════════════════════════════ */
 
@@ -132,7 +132,7 @@ function buildReceiptHTML(d) {
         <td style="vertical-align:top;text-align:right;width:220px;">
           <div style="font-size:9px;letter-spacing:.22em;text-transform:uppercase;
               color:#94a3d4;font-family:Arial,sans-serif;margin-bottom:5px;">
-            FACTURA N°
+            RECIBO N°
           </div>
           <div style="font-size:50px;font-weight:900;color:#ffffff;
               font-family:Arial,sans-serif;line-height:1;margin-bottom:8px;
@@ -171,7 +171,7 @@ function buildReceiptHTML(d) {
           <div style="font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
               color:#94a3d4;font-family:Arial,sans-serif;
               border-bottom:1.5px solid #dde5f4;padding-bottom:9px;margin-bottom:12px;">
-            FACTURADO A
+            RECIBIDO DE
           </div>
           <div style="font-size:20px;font-weight:700;color:#1a2744;
               font-family:Arial,sans-serif;margin-bottom:4px;line-height:1.2;">
@@ -200,7 +200,7 @@ function buildReceiptHTML(d) {
               color:#94a3d4;font-family:Arial,sans-serif;
               border-bottom:1.5px solid rgba(255,255,255,.14);
               padding-bottom:9px;margin-bottom:12px;">
-            DATOS DE LA FACTURA
+            DATOS DEL RECIBO
           </div>
           <table style="border-collapse:collapse;width:100%;">
             <tr>
@@ -406,7 +406,7 @@ function buildReceiptHTML(d) {
       <tr>
         <td style="font-size:10.5px;color:#94a3d4;font-family:Arial,sans-serif;">
           Documento generado digitalmente &nbsp;|&nbsp;
-          Factura N°&nbsp;${d.num}&nbsp;&nbsp;·&nbsp;&nbsp;${fecha}
+          Recibo N°&nbsp;${d.num}&nbsp;&nbsp;·&nbsp;&nbsp;${fecha}
         </td>
         <td style="font-size:10.5px;font-weight:800;color:#1a2744;
             text-align:right;font-family:Arial,sans-serif;">

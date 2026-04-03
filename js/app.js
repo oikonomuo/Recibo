@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   FACTURA DIGITAL PRO — app.js
+   RECIBO DIGITAL PRO — app.js
 ═══════════════════════════════════════════════════════════════ */
 
 const $   = id => document.getElementById(id);
