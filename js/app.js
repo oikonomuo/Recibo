@@ -74,20 +74,32 @@ function recalcTotal() {
     c.textContent = m + ' ' + (parseFloat(c.dataset.raw) || 0).toFixed(2);
   });
   const pct    = parseFloat(val('fDesc')) || 0;
-  const dsc    = sub * (pct / 100);
-  const tot    = sub - dsc;
+  const dscPct = sub * (pct / 100);
+  const dscMon = parseFloat(val('fDescMonto')) || 0;
+  const dscTot = dscPct + dscMon;
+  const tot    = Math.max(0, sub - dscTot);
   const aCuenta= parseFloat($('fACuenta')?.value) || 0;
   const saldo  = Math.max(0, tot - aCuenta);
 
   $('dispSub').textContent       = m + ' ' + sub.toFixed(2);
-  $('dispDesc').textContent      = '- ' + m + ' ' + dsc.toFixed(2);
-  $('dispDescLabel').textContent = 'Descuento (' + pct + '%)';
+  $('dispDesc').textContent      = '- ' + m + ' ' + dscTot.toFixed(2);
+  
+  // Actualizar label de descuento
+  let label = 'Descuento';
+  if (pct > 0 && dscMon > 0) label += ` (${pct}% + ${dscMon.toFixed(2)})`;
+  else if (pct > 0) label += ` (${pct}%)`;
+  else if (dscMon > 0) label += ` (${dscMon.toFixed(2)})`;
+  else label += ' (0%)';
+  
+  $('dispDescLabel').textContent = label;
   $('dispTot').textContent       = m + ' ' + tot.toFixed(2);
   $('dispACuenta').textContent   = m + ' ' + aCuenta.toFixed(2);
   $('dispSaldoBox').textContent  = m + ' ' + saldo.toFixed(2);
   if($('dispSaldo')) $('dispSaldo').textContent = m + ' ' + saldo.toFixed(2);
-  // Sync moneda prefix on A cuenta
+  
+  // Sync moneda prefix
   if($('aCuentaPrefix')) $('aCuentaPrefix').textContent = m;
+  if($('descMontoPrefix')) $('descMontoPrefix').textContent = m;
 }
 
 /* ══════════════════════════════════════════
@@ -97,7 +109,7 @@ function clearAll() {
   if (!confirm('¿Limpiar todos los campos?')) return;
 
   /* Solo limpiar campos del cliente y opciones */
-  ['fCliente','fEmpresaCli','fCI','fCliTel','fCiudad','fNotas','fDesc','fACuenta']
+  ['fCliente','fEmpresaCli','fCI','fCliTel','fCiudad','fNotas','fDesc','fDescMonto','fACuenta']
     .forEach(id => { const e = $(id); if (e) e.value = ''; });
 
   $('fMes').value    = '';
@@ -156,10 +168,12 @@ function collectData() {
     });
   });
 
-  const dscAmt  = subRaw * (pct / 100);
-  const totAmt  = subRaw - dscAmt;
-  const aCuenta = parseFloat($('fACuenta')?.value) || 0;
-  const saldo   = Math.max(0, totAmt - aCuenta);
+  const dscPctAmt = subRaw * (pct / 100);
+  const dscMon    = parseFloat(val('fDescMonto')) || 0;
+  const dscTotAmt = dscPctAmt + dscMon;
+  const totAmt    = Math.max(0, subRaw - dscTotAmt);
+  const aCuenta   = parseFloat($('fACuenta')?.value) || 0;
+  const saldo     = Math.max(0, totAmt - aCuenta);
 
   return {
     empresa  : val('fEmpresa') || 'Mi Empresa',
@@ -179,8 +193,9 @@ function collectData() {
     notas    : val('fNotas'),
     moneda   : m,
     pct,
+    dscMon,
     subtotal  : m + ' ' + subRaw.toFixed(2),
-    descuento : m + ' ' + dscAmt.toFixed(2),
+    descuento : m + ' ' + dscTotAmt.toFixed(2),
     total     : m + ' ' + totAmt.toFixed(2),
     aCuenta   : m + ' ' + aCuenta.toFixed(2),
     saldo     : m + ' ' + saldo.toFixed(2),

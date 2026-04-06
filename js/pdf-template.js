@@ -300,7 +300,7 @@ function buildReceiptHTML(d) {
             <tr style="background-color:#fffbfb;">
               <td style="padding:11px 18px;font-size:14px;color:#52525b;
                   font-family:Georgia,serif;border-bottom:1.5px solid #e8e0e0;">
-                Descuento (${d.pct}%)
+                Descuento ${d.pct > 0 && d.dscMon > 0 ? `(${d.pct}% + ${d.dscMon.toFixed(2)})` : (d.pct > 0 ? `(${d.pct}%)` : (d.dscMon > 0 ? `(${d.dscMon.toFixed(2)})` : '(0%)'))}
               </td>
               <td style="padding:11px 18px;font-size:14px;font-weight:700;color:#dc2626;
                   text-align:right;font-family:Georgia,serif;border-bottom:1.5px solid #e8e0e0;">
@@ -368,7 +368,13 @@ function buildReceiptHTML(d) {
     <!-- ─── Firmas ─── -->
     <table style="width:100%;border-collapse:collapse;margin-top:52px;margin-bottom:14px;">
       <tr>
-        <td style="width:48%;text-align:center;padding:0 30px 0 0;">
+        <td style="width:48%;text-align:center;padding:0 30px 0 0;position:relative;">
+          <!-- Firma superpuesta -->
+          <div style="position:relative;height:0;">
+             <img src="img/firma_vendedor.png" 
+                  style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+                  max-height:110px;pointer-events:none;mix-blend-mode:multiply;"/>
+          </div>
           <div style="border-top:2px solid #94a3d4;padding-top:11px;">
             <div style="font-size:14px;font-weight:700;color:#1a2744;
                 font-family:Arial,sans-serif;">
