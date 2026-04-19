@@ -49,30 +49,30 @@ function buildReceiptHTML(d) {
         const rowBg = i % 2 === 0 ? '#ffffff' : '#f4f7ff';
         return `
         <tr style="background-color:${rowBg};">
-          <td style="padding:13px 14px;text-align:center;font-size:14px;font-weight:700;
+          <td style="padding:10px 14px;text-align:center;font-size:13px;font-weight:700;
               color:#1a2744;font-family:Georgia,serif;border-bottom:1px solid #e8ecf4;">
             ${it.qty}
           </td>
-          <td style="padding:13px 14px;font-size:14px;color:#27272a;
+          <td style="padding:10px 14px;font-size:13px;color:#27272a;
               font-family:Georgia,serif;border-bottom:1px solid #e8ecf4;">
             ${it.concepto}
           </td>
-          <td style="padding:13px 14px;text-align:center;font-size:13px;color:#71717a;
+          <td style="padding:10px 14px;text-align:center;font-size:12px;color:#71717a;
               font-family:Georgia,serif;border-bottom:1px solid #e8ecf4;">
             ${it.unidad}
           </td>
-          <td style="padding:13px 18px;text-align:right;font-size:14px;color:#27272a;
+          <td style="padding:10px 18px;text-align:right;font-size:13px;color:#27272a;
               font-family:Georgia,serif;border-bottom:1px solid #e8ecf4;">
             ${it.precio}
           </td>
-          <td style="padding:13px 18px;text-align:right;font-size:14px;font-weight:700;
+          <td style="padding:10px 18px;text-align:right;font-size:13px;font-weight:700;
               color:#1a2744;font-family:Georgia,serif;border-bottom:1px solid #e8ecf4;">
             ${it.subtotal}
           </td>
         </tr>`;
       }).join('')
     : `<tr>
-        <td colspan="5" style="padding:26px;text-align:center;font-size:14px;
+        <td colspan="5" style="padding:20px;text-align:center;font-size:13px;
             color:#a1a1aa;font-family:Georgia,serif;background-color:#fafafa;">
           Sin productos registrados
         </td>
@@ -80,14 +80,14 @@ function buildReceiptHTML(d) {
 
   /* ── Notas ── */
   const notasBlock = d.notas ? `
-    <div style="margin-bottom:28px;padding:16px 22px;
+    <div style="padding:16px 22px;
         background-color:#f0f4fb;border-left:5px solid #1a2744;
         border-radius:0 10px 10px 0;">
       <div style="font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
           color:#1a2744;margin-bottom:7px;font-family:Arial,sans-serif;">
         NOTAS / OBSERVACIONES
       </div>
-      <div style="font-size:13.5px;color:#52525b;line-height:1.75;font-family:Georgia,serif;">
+      <div style="font-size:12px;color:#52525b;line-height:1.6;font-family:Georgia,serif;">
         ${d.notas}
       </div>
     </div>` : '';
@@ -98,17 +98,19 @@ function buildReceiptHTML(d) {
   return `
 <div style="
   width: 794px;
-  min-height: 1123px;
+  max-height: 1120px;
+  height: 1120px;
   margin: 0 auto;
   background-color: #ffffff;
   font-family: Georgia, serif;
   position: relative;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 ">
 
   <!-- ══════ HEADER NAVY ══════ -->
-  <div style="background-color:#1a2744;padding:38px 50px 32px;">
+  <div style="background-color:#1a2744;padding:25px 45px 20px;">
 
     <!-- Fila: Logo | Empresa | Número -->
     <table style="width:100%;border-collapse:collapse;">
@@ -159,10 +161,10 @@ function buildReceiptHTML(d) {
   <div style="height:6px;background:linear-gradient(to right,#1a2744 0%,#3b5299 50%,#94a3d4 100%);"></div>
 
   <!-- ══════ CUERPO ══════ -->
-  <div style="padding:36px 50px 40px;flex:1;">
+  <div style="padding:24px 45px 20px;flex:1;display:flex;flex-direction:column;">
 
     <!-- ─── Sección: Cliente y Datos de la Factura ─── -->
-    <table style="width:100%;border-collapse:separate;border-spacing:16px 0;margin-bottom:30px;">
+    <table style="width:100%;border-collapse:separate;border-spacing:12px 0;margin-bottom:20px;">
       <tr>
 
         <!-- Bloque CLIENTE -->
@@ -241,7 +243,7 @@ function buildReceiptHTML(d) {
     </div>
 
     <!-- ─── Tabla de productos ─── -->
-    <table style="width:100%;border-collapse:collapse;margin-bottom:28px;
+    <table style="width:100%;border-collapse:collapse;margin-bottom:18px;
         border-radius:12px;overflow:hidden;">
       <thead>
         <tr style="background-color:#1a2744;">
@@ -277,10 +279,14 @@ function buildReceiptHTML(d) {
       </tbody>
     </table>
 
-    <!-- ─── Totales ─── -->
-    <table style="width:100%;border-collapse:collapse;margin-bottom:32px;">
+    <!-- ─── Totales y Notas ─── -->
+    <table style="width:100%;border-collapse:collapse;margin-bottom:15px;">
       <tr>
-        <td style="width:46%;"></td>
+        <!-- Columna Izquierda: Notas -->
+        <td style="width:46%;vertical-align:top;padding-right:24px;">
+          ${notasBlock}
+        </td>
+        <!-- Columna Derecha: Totales -->
         <td style="width:54%;vertical-align:top;">
           <table style="width:100%;border-collapse:collapse;">
 
@@ -362,11 +368,9 @@ function buildReceiptHTML(d) {
     </table>
 
 
-    <!-- ─── Notas ─── -->
-    ${notasBlock}
-
     <!-- ─── Firmas ─── -->
-    <table style="width:100%;border-collapse:collapse;margin-top:52px;margin-bottom:14px;">
+    <div style="flex:1;"></div> <!-- Espaciador para empujar firmas hacia abajo -->
+    <table style="width:100%;border-collapse:collapse;margin-top:20px;margin-bottom:25px;">
       <tr>
         <td style="width:48%;text-align:center;padding:0 30px 0 0;position:relative;">
           <!-- Firma superpuesta -->
@@ -406,7 +410,7 @@ function buildReceiptHTML(d) {
   </div><!-- /cuerpo -->
 
   <!-- ══════ FOOTER ══════ -->
-  <div style="background-color:#f4f7fb;padding:14px 50px;
+  <div style="background-color:#f4f7fb;padding:12px 45px;
       border-top:1.5px solid #e4e9f0;margin-top:auto;">
     <table style="width:100%;border-collapse:collapse;">
       <tr>
